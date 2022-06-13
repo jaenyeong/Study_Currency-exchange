@@ -1,4 +1,4 @@
-package com.jaenyeong.javacurrencyexchange.api.config;
+package com.jaenyeong.javacurrencyexchange.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;

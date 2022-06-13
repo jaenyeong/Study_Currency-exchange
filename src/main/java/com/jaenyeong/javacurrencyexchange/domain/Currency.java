@@ -1,4 +1,4 @@
-package com.jaenyeong.javacurrencyexchange.api.domain;
+package com.jaenyeong.javacurrencyexchange.domain;
 
 public enum Currency {
     KRW("한국"),

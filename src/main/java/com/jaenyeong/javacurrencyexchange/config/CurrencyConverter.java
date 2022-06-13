@@ -1,6 +1,6 @@
-package com.jaenyeong.javacurrencyexchange.api.config;
+package com.jaenyeong.javacurrencyexchange.config;
 
-import com.jaenyeong.javacurrencyexchange.api.domain.Currency;
+import com.jaenyeong.javacurrencyexchange.domain.Currency;
 import org.springframework.core.convert.converter.Converter;
 
 public class CurrencyConverter implements Converter<String, Currency> {

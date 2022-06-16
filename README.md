@@ -217,3 +217,19 @@
 ### 스프링 부트 서버 실행 경고
 * `OpenJDK 64-Bit Server VM warning: Options -Xverify:none and -noverify were deprecated in JDK 13 and will likely be removed in a future release.`
   * `-Xverify:none` and `-noverify` 옵션은 향후 JDK 13 버전 이후에 지원되지 않을 수 있음
+
+## `Currencylayer` API
+
+### `API Response Properties`
+* `success`
+  * 쿼리 성공 여부
+* `terms`
+  * `Currencylayer` 이용 약관에 대한 링크
+* `privacy`
+  *  `Currencylayer` 개인 정보 보호 정책에 대한 링크
+* `timestamp`
+  * 환율이 수집된 정확한 날짜-시간(`UNIX`) 반환
+* `source`
+  * 기준이 되는 통화 (기본값: `USD`)
+* `quotes`
+  * 통화, 변환율 쌍으로 구성된 모든 환율 값 목록

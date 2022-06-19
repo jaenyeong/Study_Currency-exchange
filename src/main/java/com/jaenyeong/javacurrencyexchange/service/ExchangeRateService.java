@@ -8,6 +8,8 @@ import com.jaenyeong.javacurrencyexchange.dto.RemittanceResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import static java.lang.Double.parseDouble;
+
 @Service
 public class ExchangeRateService {
 
@@ -16,16 +18,23 @@ public class ExchangeRateService {
     @Value("${currency-layer.api-key}")
     private String apiKey;
 
-    public RemittanceResponse getExchangeRate(
+    public String getExchangeRate(
+        final Currency source,
+        final Currency target
+    ) {
+        final ExchangeRateDto exchangeRateDto = new ExchangeRateClient(currencyLayerUrl, apiKey).getExchangeRate();
+        final double exchangeRate = exchangeRateDto.findExchangeRateBy(source.toString() + target);
+
+        return new Remittance(exchangeRate).toPrintFormat();
+    }
+
+    public String getCalculateRemittance(
         final Currency source,
         final Currency target,
         final double givenRemittance
     ) {
-        final Remittance remittance = new Remittance(givenRemittance);
+        final double exchangeRate = parseDouble(getExchangeRate(source, target));
 
-        final ExchangeRateDto exchangeRateDto = new ExchangeRateClient(currencyLayerUrl, apiKey).getExchangeRate();
-        final double exchangeRate = exchangeRateDto.findExchangeRateBy(source.toString() + target);
-
-        return new RemittanceResponse(remittance.calculate(exchangeRate));
+        return new Remittance(givenRemittance).calculate(exchangeRate);
     }
 }

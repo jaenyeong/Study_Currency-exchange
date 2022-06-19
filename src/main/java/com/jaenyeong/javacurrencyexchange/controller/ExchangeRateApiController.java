@@ -1,8 +1,8 @@
 package com.jaenyeong.javacurrencyexchange.controller;
 
 import com.jaenyeong.javacurrencyexchange.domain.Currency;
-import com.jaenyeong.javacurrencyexchange.dto.RemittanceResponse;
 import com.jaenyeong.javacurrencyexchange.service.ExchangeRateService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +19,20 @@ public class ExchangeRateApiController {
         this.exchangeRateService = exchangeRateService;
     }
 
-    @GetMapping("/sources/{source}/targets/{target}")
-    public RemittanceResponse exchangeRate(
+    @GetMapping("/exchange-rate/sources/{source}/targets/{target}")
+    public ResponseEntity<String> getExchangeRate(
+        @PathVariable final Currency source,
+        @PathVariable final Currency target
+    ) {
+        return ResponseEntity.ok(exchangeRateService.getExchangeRate(source, target));
+    }
+
+    @GetMapping("/calculate/sources/{source}/targets/{target}")
+    public ResponseEntity<String> calculateRemittance(
         @PathVariable final Currency source,
         @PathVariable final Currency target,
-        @RequestParam(required = false) double remittance
+        @RequestParam double remittance
     ) {
-        return exchangeRateService.getExchangeRate(source, target, remittance);
+        return ResponseEntity.ok(exchangeRateService.getCalculateRemittance(source, target, remittance));
     }
 }

@@ -31,6 +31,7 @@ class ExchangeRateClientTest {
     private String invalidApiKey;
 
     @DisplayName("유효한 `api-key`와 `url` 프로퍼티를 사용해 환율 가져오기 성공")
+    @Disabled
     @Test
     void get_request_currency_layer_is_success_when_valid_apiKey() {
         // Arrange
@@ -44,6 +45,7 @@ class ExchangeRateClientTest {
     }
 
     @DisplayName("유효하지 않은 `api-key`와 `url` 프로퍼티를 사용해 환율 가져오면 `401` 에러 발생")
+    @Disabled
     @Test
     void get_request_currency_layer_is_fail_when_invalid_apiKey() {
         // Arrange

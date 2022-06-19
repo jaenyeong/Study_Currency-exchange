@@ -233,3 +233,18 @@
   * 기준이 되는 통화 (기본값: `USD`)
 * `quotes`
   * 통화, 변환율 쌍으로 구성된 모든 환율 값 목록
+
+## 구현 기술
+
+### `RestTemplate` 사용
+`HTTP` 요청 시 사용하는 클라이언트 모듈
+* `RestTemplate`
+  * 기존 `Sync` 방식의 요청 클라이언트 모듈
+  * 현재는 스프링 진영에서 유지만 하고 있음
+  * [문서](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/web/client/RestTemplateBuilder.html)
+
+#### `WebClient`와 비교
+* `WebClient`는 `Async` 방식의 요청 모듈
+  * `Reactor`, `Netty` 등과 같은 라이브러를 통해 API를 제공
+* [WebClient, RestTemplate 비교](https://www.baeldung.com/spring-webclient-resttemplate)
+* 최종적으로 현재 요구사항으로는 `WebClient`까지 사용하지 않아도 된다고 판단

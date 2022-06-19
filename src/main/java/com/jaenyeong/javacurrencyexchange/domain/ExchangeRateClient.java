@@ -4,9 +4,8 @@ import com.jaenyeong.javacurrencyexchange.dto.ExchangeRateDto;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Objects;
-
 import static java.time.Duration.ofSeconds;
+import static java.util.Objects.requireNonNull;
 
 public class ExchangeRateClient {
 
@@ -22,12 +21,12 @@ public class ExchangeRateClient {
         .setBufferRequestBody(false)
         .build();
 
-    public ExchangeRateDto getCurrencyLayer() {
-        return Objects.requireNonNull(
-            restTemplate.getForEntity(
-                currencyLayerRequestUrl,
-                ExchangeRateDto.class
-            ).getBody()
-        );
+    public ExchangeRateDto getExchangeRate() {
+        final ExchangeRateDto responseBody = restTemplate.getForEntity(
+            currencyLayerRequestUrl,
+            ExchangeRateDto.class
+        ).getBody();
+
+        return requireNonNull(responseBody);
     }
 }

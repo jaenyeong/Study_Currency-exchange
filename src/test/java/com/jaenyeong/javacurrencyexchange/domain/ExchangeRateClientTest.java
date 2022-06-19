@@ -38,7 +38,7 @@ class ExchangeRateClientTest {
         ExchangeRateClient client = new ExchangeRateClient(currencyLayerUrl, apiKey);
 
         // Act
-        final ExchangeRateDto responseDto = client.getCurrencyLayer();
+        final ExchangeRateDto responseDto = client.getExchangeRate();
 
         // Assert
         assertThat(responseDto.isSuccess()).isTrue();
@@ -53,7 +53,7 @@ class ExchangeRateClientTest {
 
         // Act
         // Assert
-        assertThatThrownBy(client::getCurrencyLayer)
+        assertThatThrownBy(client::getExchangeRate)
             .isInstanceOf(HttpClientErrorException.class)
             .hasMessageContaining("401 Unauthorized");
     }

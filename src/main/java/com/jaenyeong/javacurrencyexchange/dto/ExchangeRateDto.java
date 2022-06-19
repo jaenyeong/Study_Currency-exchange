@@ -3,12 +3,13 @@ package com.jaenyeong.javacurrencyexchange.dto;
 import java.util.Map;
 
 public class ExchangeRateDto {
+
     private boolean success;
     private String terms;
     private String privacy;
     private String timeStamp;
     private String source;
-    private Map<String, Long> quotes;
+    private Map<String, Double> quotes;
 
     public boolean isSuccess() {
         return success;
@@ -50,11 +51,11 @@ public class ExchangeRateDto {
         this.source = source;
     }
 
-    public Map<String, Long> getQuotes() {
+    public Map<String, Double> getQuotes() {
         return quotes;
     }
 
-    public void setQuotes(Map<String, Long> quotes) {
+    public void setQuotes(Map<String, Double> quotes) {
         this.quotes = quotes;
     }
 }

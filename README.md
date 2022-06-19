@@ -3,17 +3,15 @@
   * 환율 API를 활용하여 환율 계산 과제
 
 ## 미션 요구사항
-
 * `송금 국가`는 `미국`으로 고정
 * `수취 국가`는 `한국(KRW)`, `일본(JPY)`, `필리핀(PHP)` 세 군데 중 한 곳을 `select box`로 선택할 수 있을 것
 * 수취 국가 선택 시 환율이 변경될 것
-    * 환율은 `1 USD`에 대응하는 선택한 통화의 금액
+  * 환율은 `1 USD`에 대응하는 선택한 통화의 금액
 * 송금액을 `USD`로 입력, `Submit`을 눌러 제출하면 수취 금액이 선택한 통화로 계산될 것
 * 환율과 수취 금액은 소수점 2번째 자리까지, 3자리 이상인 경우 `,`를 가운데 찍어 출력
-    * 예를 들어, 값이 `1234`라면 `1,234.00`으로 출력될 것
+  * 예를 들어, 값이 `1234`라면 `1,234.00`으로 출력될 것
 
 ## 프로그래밍 요구사항
-
 * 스프링 부트 등과 같은 프레임워크를 자유롭게 사용할 것
   * 다만 가급적이면 최신 버전을 사용할 것
 * `HTML`, `JavaScript`, `SSR` 템플릿 엔진 등만 사용할 것
@@ -208,7 +206,7 @@
     * 환율을 미리 계산해 `HTML/JavaScript(프론트)`에서 캐싱하여 통화(국가)를 변경할 때마다 출력 가능
     * 통화(국가)를 변경할 때마다 서버에 요청하여 정보를 받는 것도 가능
   * 다음과 같은 경우 `송금액이 바르지 않습니다`라는 에러 문구 출력 (팝업, 하단에 빨간 텍스트로 표기)
-    * 수취 금액을 입력하지 않은 경우
+    * 송금액을 아예 입력하지 않은 경우
     * `0`보다 작은 음수값을 입력하는 경우
     * 올바른 숫자가 아닌 다른 값을 입력하는 경우
 
@@ -244,7 +242,12 @@
   * [문서](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/web/client/RestTemplateBuilder.html)
 
 #### `WebClient`와 비교
-* `WebClient`는 `Async` 방식의 요청 모듈
-  * `Reactor`, `Netty` 등과 같은 라이브러를 통해 API를 제공
+`WebClient`는 `Async` 방식의 요청 모듈
+* `Reactor`, `Netty` 등과 같은 라이브러를 통해 API를 제공
 * [WebClient, RestTemplate 비교](https://www.baeldung.com/spring-webclient-resttemplate)
 * 최종적으로 현재 요구사항으로는 `WebClient`까지 사용하지 않아도 된다고 판단
+
+### `DecimalFormat`
+* 소수점 2번째 자리까지의 출력 포맷을 위해 사용
+  * 주어진 조건이 `BigDecimal`을 사용할 만큼 크지 않아 `double`로 구현
+* [변경 방법 참고](https://baeldung-cn.com/java-double-to-string)

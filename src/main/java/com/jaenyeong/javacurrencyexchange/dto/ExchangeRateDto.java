@@ -5,9 +5,6 @@ import java.util.Map;
 public class ExchangeRateDto {
 
     private boolean success;
-    private String terms;
-    private String privacy;
-    private String timeStamp;
     private String source;
     private Map<String, Double> quotes;
 
@@ -17,30 +14,6 @@ public class ExchangeRateDto {
 
     public void setSuccess(boolean success) {
         this.success = success;
-    }
-
-    public String getTerms() {
-        return terms;
-    }
-
-    public void setTerms(String terms) {
-        this.terms = terms;
-    }
-
-    public String getPrivacy() {
-        return privacy;
-    }
-
-    public void setPrivacy(String privacy) {
-        this.privacy = privacy;
-    }
-
-    public String getTimeStamp() {
-        return timeStamp;
-    }
-
-    public void setTimeStamp(String timeStamp) {
-        this.timeStamp = timeStamp;
     }
 
     public String getSource() {
@@ -57,5 +30,9 @@ public class ExchangeRateDto {
 
     public void setQuotes(Map<String, Double> quotes) {
         this.quotes = quotes;
+    }
+
+    public double findExchangeRateBy(final String currency) {
+        return quotes.getOrDefault(currency, (double) 0);
     }
 }

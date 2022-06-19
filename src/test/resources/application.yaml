@@ -1,0 +1,9 @@
+spring:
+  mvc:
+    view:
+      suffix: .html
+
+currency-layer:
+  url: https://api.apilayer.com/currency_data/live
+  api-key: F8maHd9Z1ZxrKIyx1h9Glr558T8XXECU
+  invalid-key: invalid-access-key

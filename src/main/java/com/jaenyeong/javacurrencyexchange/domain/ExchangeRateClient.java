@@ -7,12 +7,12 @@ import org.springframework.web.client.RestTemplate;
 import static java.time.Duration.ofSeconds;
 import static java.util.Objects.requireNonNull;
 
-public class ExchangeRateClient {
+public final class ExchangeRateClient {
 
-    private final String currencyLayerRequestUrl;
+    private final String requestUrl;
 
     public ExchangeRateClient(final String currencyLayerUrl, final String apiKey) {
-        this.currencyLayerRequestUrl = currencyLayerUrl + "?apikey=" + apiKey;
+        this.requestUrl = currencyLayerUrl + "?apikey=" + apiKey;
     }
 
     private final RestTemplate restTemplate = new RestTemplateBuilder()
@@ -22,10 +22,7 @@ public class ExchangeRateClient {
         .build();
 
     public ExchangeRateDto getExchangeRate() {
-        final ExchangeRateDto responseBody = restTemplate.getForEntity(
-            currencyLayerRequestUrl,
-            ExchangeRateDto.class
-        ).getBody();
+        final ExchangeRateDto responseBody = restTemplate.getForEntity(requestUrl, ExchangeRateDto.class).getBody();
 
         return requireNonNull(responseBody);
     }

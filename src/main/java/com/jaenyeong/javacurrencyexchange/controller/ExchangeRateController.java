@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ExchangeRateController {
 
     @GetMapping("/")
-    public String main() {
+    public String mainPage() {
         return "exchange-rate";
     }
 }
